@@ -1,0 +1,488 @@
+RCversion: 3
+include: "imaqdx.rch"
+
+ ///// IMAQdx Class Definition /////
+ class: IMAQdx
+genericType: IMAQdx
+passAttributeError: none
+className: IMAQdx
+flags: 0
+
+event:	FrameDone	"Frame Done"	0	2
+	BufferInterval	numeric	uInt32	value	config
+	ActualBufferNumber	numeric	uInt32	value	data
+	"Execute an event handler when a frame done event occurs."	HTML\IMAQDX_Event.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+event:	PnP	"Plug and Play"	1	1
+	Event	numeric	uInt32		enum	{"Camera Attached"=0, "Camera Detached"=1, "Bus Reset"=2}	value	configdata
+	"Execute an event handler when a plug and play event occurs."	HTML\IMAQDX_Event.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+event:	AttributeUpdated	"Attribute Updated"	2	1
+	Name	string	StrHandle	in	configdata
+	"Execute an event handler when an attribute updated event occurs."	HTML\IMAQDX_Event.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: BaseAddress
+	"Camera Information:Base Address"
+	uL	readonly	29	0
+	"Read only. Gets the base address of the camera registers."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: BusType
+	"Camera Information:Bus Type"
+	uL	enum	{"FireWire"=825440564, "Ethernet"=1768977972}	readonly	29	1
+	"Read only. Gets the bus type of the camera."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: ModelName
+	"Camera Information:Model Name"
+	string	readonly	29	2
+	"Read only. Returns the model name."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: SerialNumberHigh
+	"Camera Information:Serial Number High"
+	uL	readonly	29	3
+	"Read only. Gets the upper 32-bits of the camera 64-bit serial number."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: SerialNumberLow
+	"Camera Information:Serial Number Low"
+	uL	readonly	29	4
+	"Read only. Gets the lower 32-bits of the camera 64-bit serial number."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: VendorName
+	"Camera Information:Vendor Name"
+	string	readonly	29	5
+	"Read only. Returns the vendor name."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: HostIPAddress
+	"Camera Information:Host IP Address"
+	string	readonly	29	2B
+	"Read only. Returns the host adapter IP address."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: IPAddress
+	"Camera Information:IP Address"
+	string	readonly	29	2C
+	"Read only. Returns the IP address."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: PrimaryURLString
+	"Camera Information:Primary URL String"
+	string	readonly	29	48
+	"Read only. Gets the camera's primary URL string."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: SecondaryURLString
+	"Camera Information:Secondary URL String"
+	string	readonly	29	49
+	"Read only. Gets the camera's secondary URL string."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: AcquisitionInProgress
+	"Status Information:Acquisition In Progress"
+	bool	readonly	29	6
+	"Read only. Gets the current state of the acquisition. TRUE if acquiring; otherwise FALSE."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: BufferCount
+	"Status Information:Last Buffer Count"
+	uL	readonly	29	7
+	"Read only. Gets the number of transferred buffers."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: LastBufferNumber
+	"Status Information:Last Buffer Number"
+	uL	readonly	29	8
+	"Read only. Gets the last cumulative buffer number transferred."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: LostBufferCount
+	"Status Information:Lost Buffer Count"
+	uL	readonly	29	9
+	"Read only. Gets the number of lost buffers during an acquisition session."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: LostPacketCount
+	"Status Information:Lost Packet Count"
+	uL	readonly	29	A
+	"Read only. Gets the number of lost packets during an acquisition session."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: RequestedResendPackets
+	"Status Information:Requested Resend Packet Count"
+	uL	readonly	29	3D
+	"Read only. Gets the number of packets requested to be resent during an acquisition session."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: ReceivedResendPackets
+	"Status Information:Received Resend Packets"
+	uL	readonly	29	3E
+	"Read only. Gets the number of packets that were requested to be resent during an acquisition session and were completed."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: HandledEventCount
+	"Status Information:Handled Event Count"
+	uL	readonly	29	53
+	"Read only. Gets the number of handled events during an acquisition session."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: LostEventCount
+	"Status Information:Lost Event Count"
+	uL	readonly	29	54
+	"Read only. Gets the number of lost events during an acquisition session."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: BayerGainB
+	"Acquisition Attributes:Bayer:Gain B"
+	fD	readwrite	29	B
+	"Sets/gets the white balance gain for the blue component of the Bayer conversion."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: BayerGainG
+	"Acquisition Attributes:Bayer:Gain G"
+	fD	readwrite	29	C
+	"Sets/gets the white balance gain for the green component of the Bayer conversion."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: BayerGainR
+	"Acquisition Attributes:Bayer:Gain R"
+	fD	readwrite	29	D
+	"Sets/gets the white balance gain for the red component of the Bayer conversion."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: BayerPattern
+	"Acquisition Attributes:Bayer:Pattern"
+	uL	enum	{"None"=0, "GB"=1, "GR"=2, "BG"=3, "RG"=4, "Use Hardware Value"=5}	readwrite	29	E
+	"Sets/gets the Bayer pattern to use."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: StreamChannelMode
+	"Acquisition Attributes:Controller:Stream Channel Mode"
+	uL	enum	{"Automatic"=0, "Manual"=1}	readwrite	29	51
+	"Gets/sets the mode for allocating a FireWire stream channel."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: DesiredStreamChannel
+	"Acquisition Attributes:Controller:Desired Stream Channel"
+	uL	readwrite	29	52
+	"Gets/sets the stream channel to manually allocate."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: FrameInterval
+	"Acquisition Attributes:Frame Interval"
+	uL	readonly	29	F
+	"Read only. Gets the duration in milliseconds between successive frames."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: IgnoreFirstFrame
+	"Acquisition Attributes:Ignore First Frame"
+	bool	readwrite	29	10
+	"Gets/sets the video delay of one frame between starting the camera and receiving the video feed."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: OffsetX
+	"Acquisition Attributes:Offset X"
+	uL	readwrite	29	11
+	"Gets/sets the left offset of the image."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: OffsetY
+	"Acquisition Attributes:Offset Y"
+	uL	readwrite	29	12
+	"Gets/sets the top offset of the image."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: Width
+	"Acquisition Attributes:Width"
+	uL	readwrite	29	13
+	"Gets/sets the width of the image."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: Height
+	"Acquisition Attributes:Height"
+	uL	readwrite	29	14
+	"Gets/sets the height of the image."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: PixelFormat
+	"Acquisition Attributes:Pixel Format"
+	uL	readwrite	29	15
+	"Gets/sets the pixel format of the source sensor."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: PacketSize
+	"Acquisition Attributes:Packet Size"
+	uL	readwrite	29	16
+	"Gets/sets the packet size in bytes."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: PayloadSize
+	"Acquisition Attributes:Payload Size"
+	uL	readwrite	29	17
+	"Gets/sets the frame size in bytes."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: Speed
+	"Acquisition Attributes:Speed"
+	uL	enum	{"100Mbps"=0, "200Mbps"=1, "400Mbps"=2, "800Mbps"=3}	readwrite	29	18
+	"Gets/sets the transfer speed in Mbps for a FireWire packet."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: ShiftPixelBits
+	"Acquisition Attributes:Shift Pixel Bits"
+	bool	readwrite	29	19
+	"Gets/sets the alignment of 16-bit cameras. Downshift the pixel bits if the camera returns most significant bit-aligned data."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: SwapPixelBytes
+	"Acquisition Attributes:Swap Pixel Bytes"
+	bool	readwrite	29	1A
+	"Gets/sets the endianness of 16-bit cameras. Swap the pixel bytes if the camera returns little endian data."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: OverwriteMode
+	"Acquisition Attributes:Overwrite Mode"
+	uL	enum	{"Get Oldest"=0, "Fail"=2, "Get Newest"=3}	readwrite	29	1B
+	"Gets/sets the overwrite mode, used to determine acquisition when an image transfer cannot be completed due to an overwritten internal buffer."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: Timeout
+	"Acquisition Attributes:Timeout"
+	uL	readwrite	29	1C
+	"Gets/sets the timeout value in milliseconds, used to abort an acquisition when the image transfer cannot be completed within the delay."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: VideoMode
+	"Acquisition Attributes:Video Mode"
+	uL	readwrite	29	1D
+	"Gets/sets the video mode for a camera."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: BitsPerPixel
+	"Acquisition Attributes:Bits Per Pixel"
+	uL	enum	{"Use Hardware Value"=0, "10-bit"=10, "12-bit"=12, "14-bit"=14, "16-bit"=16}	readwrite	29	3C
+	"Gets/sets the actual bits per pixel. For 16-bit components, this represents the actual bit depth (10-, 12-, 14-, or 16-bit)."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: PixelSignedness
+	"Acquisition Attributes:Pixel Signedness"
+	uL	enum	{"Unsigned"=0, "Signed"=1, "Use Hardware Value"=2}	readwrite	29	57
+	"Gets/sets the signedness of the pixel. For 16-bit components, this represents the actual pixel signedness (Signed, or Unsigned)."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: ReserveDualPackets
+	"Acquisition Attributes:Reserve Dual Packets"
+	bool	readwrite	29	4F
+	"Gets/sets if dual packets will be reserved for a very large FireWire packet."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: ReceiveTimestampMode
+	"Acquisition Attributes:Receive Timestamp Mode"
+	uL	enum	{"None"=0, "Tick Count"=1, "System Time"=2}	readwrite	29	50
+	"Gets/sets the mode for timestamping images received by the driver."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: ActualPeakBandwidth
+	"Acquisition Attributes:Advanced Ethernet:Bandwidth Control:Actual Peak Bandwidth"
+	fD	readonly	29	4D
+	"Read only. Returns the actual maximum peak bandwidth the camera will be configured to use."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: DesiredPeakBandwidth
+	"Acquisition Attributes:Advanced Ethernet:Bandwidth Control:Desired Peak Bandwidth"
+	fD	readwrite	29	4E
+	"Gets/sets the desired maximum peak bandwidth the camera should use."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: DestinationMode
+	"Acquisition Attributes:Advanced Ethernet:Controller:Destination Mode"
+	uL	enum	{"Unicast"=0, "Broadcast"=1, "Multicast"=2}	readwrite	29	3A
+	"Gets/Sets where the camera is instructed to send the image stream."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: DestinationMulticastAddress
+	"Acquisition Attributes:Advanced Ethernet:Controller:Destination Multicast Address"
+	string	readwrite	29	3B
+	"Gets/Sets the multicast address the camera should send data in multicast mode."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: EventsEnabled
+	"Acquisition Attributes:Advanced Ethernet:Event Parameters:Events Enabled"
+	bool	readwrite	29	55
+	"Gets/Sets if events will be handled."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: MaxOutstandingEvents
+	"Acquisition Attributes:Advanced Ethernet:Event Parameters:Max Outstanding Events"
+	uL	readwrite	29	56
+	"Gets/Sets the maximum number of outstanding events to queue."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: TestPacketEnabled
+	"Acquisition Attributes:Advanced Ethernet:Test Packet Parameters:Test Packet Enabled"
+	bool	readwrite	29	58
+	"Gets/Sets whether the driver will validate the image streaming settings using test packets prior to an acquisition"	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: TestPacketTimeout
+	"Acquisition Attributes:Advanced Ethernet:Test Packet Parameters:Test Packet Timeout"
+	uL	readwrite	29	59
+	"Gets/Sets the timeout for validating test packet reception (if enabled)"	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: MaxTestPacketRetries
+	"Acquisition Attributes:Advanced Ethernet:Test Packet Parameters:Max Test Packet Retries"
+	uL	readwrite	29	5A
+	"Gets/Sets the number of retries for validating test packet reception (if enabled)"	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: ChunkDataDecodingEnabled
+	"Acquisition Attributes:Chunk Data Decoding:Chunk Data Decoding Enabled"
+	bool	readwrite	29	5B
+	"Gets/Sets whether the driver will decode any chunk data in the image stream"	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: MaximumChunkCopySize
+	"Acquisition Attributes:Chunk Data Decoding:Maximum Chunk Copy Size"
+	uL	readwrite	29	5C
+	"Gets/Sets the maximum size of any single chunk data element that will be made available"	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: LostPacketMode
+	"Acquisition Attributes:Advanced Ethernet:Lost Packet Mode"
+	uL	enum	{"Ignore"=0, "Fail"=1}	readwrite	29	3F
+	"Gets/sets the behavior when the user extracts a buffer that has missing packets."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: MemoryWindowSize
+	"Acquisition Attributes:Advanced Ethernet:Resend Parameters:Memory Window Size"
+	uL	readwrite	29	1E
+	"Gets/sets the size of the memory window of the camera in kilobytes. Should match the camera's internal buffer size."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: ResendsEnabled
+	"Acquisition Attributes:Advanced Ethernet:Resend Parameters:Resends Enabled"
+	bool	readwrite	29	40
+	"Gets/sets if resends will be issued for missing packets."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: ResendThresholdPercentage
+	"Acquisition Attributes:Advanced Ethernet:Resend Parameters:Resend Threshold Percentage"
+	uL	readwrite	29	41
+	"Gets/sets the threshold of the packet processing window that will trigger packets to be resent."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: ResendBatchingPercentage
+	"Acquisition Attributes:Advanced Ethernet:Resend Parameters:Resend Batching Percentage"
+	uL	readwrite	29	42
+	"Gets/sets the percent of the packet resend threshold that will be issued as one group past the initial threshold sent in a single request."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: MaxResendsPerPacket
+	"Acquisition Attributes:Advanced Ethernet:Resend Parameters:Max Resends Per Packet"
+	uL	readwrite	29	43
+	"Gets/sets the maximum number of resend requests that will be issued for a missing packet."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: ResendResponseTimeout
+	"Acquisition Attributes:Advanced Ethernet:Resend Parameters:Resend Response Timeout"
+	uL	readwrite	29	44
+	"Gets/sets the time to wait for a resend request to be satisfied before sending another."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: NewPacketTimeout
+	"Acquisition Attributes:Advanced Ethernet:Resend Parameters:New Packet Timeout"
+	uL	readwrite	29	45
+	"Gets/sets the time to wait for new packets to arrive in a partially completed image before assuming the rest of the image was lost."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: MissingPacketTimeout
+	"Acquisition Attributes:Advanced Ethernet:Resend Parameters:Missing Packet Timeout"
+	uL	readwrite	29	46
+	"Gets/sets the time to wait for a missing packet before issuing a resend."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: ResendTimerResolution
+	"Acquisition Attributes:Advanced Ethernet:Resend Parameters:Resend Timer Resolution"
+	uL	readwrite	29	47
+	"Gets/sets the resolution of the packet processing system that is used for all packet-related timeouts."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: ActiveAttribute
+	"Camera Attributes:Active Attribute"
+	string	readwrite	29	1F
+	"Gets/sets the active attribute"	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: ValueU32
+	"Camera Attributes:Value:U32"
+	uL	readwrite	29	20
+	"Gets/sets the current value as an integer for the active attribute."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: ValueI64
+	"Camera Attributes:Value:I64"
+	iQ	readwrite	29	31
+	"Gets/sets the current value as a 64-bit integer for the active attribute."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: ValueDBL
+	"Camera Attributes:Value:DBL"
+	fD	readwrite	29	21
+	"Gets/sets the current value as a double precision floating point number for the active attribute."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: ValueString
+	"Camera Attributes:Value:String"
+	string	readwrite	29	22
+	"Gets/sets the current value as a string for the active attribute."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: ValueBool
+	"Camera Attributes:Value:Bool"
+	bool	readwrite	29	2A
+	"Gets/sets the current value as a boolean for the active attribute."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: MinU32
+	"Camera Attributes:Minimum:U32"
+	uL	readonly	29	23
+	"Read only. Gets the current minimum as an integer for the active attribute."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: MinI64
+	"Camera Attributes:Minimum:I64"
+	iQ	readonly	29	32 
+	"Read only. Gets the current minimum as a 64-bit integer for the active attribute."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: MinDBL
+	"Camera Attributes:Minimum:DBL"
+	fD	readonly	29	24
+	"Read only. Gets the current minimum as a double precision floating point number for the active attribute."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: MinString
+	"Camera Attributes:Minimum:String"
+	string	readonly	29	25
+	"Read only. Gets the current minimum as a string for the active attribute."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: MaxU32
+	"Camera Attributes:Maximum:U32"
+	uL	readonly	29	26
+	"Read only. Gets the current maximum as an integer for the active attribute."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: MaxI64
+	"Camera Attributes:Maximum:I64"
+	iQ	readonly	29	33
+	"Read only. Gets the current maximum as a 64-bit integer for the active attribute."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: MaxDBL
+	"Camera Attributes:Maximum:DBL"
+	fD	readonly	29	27
+	"Read only. Gets the current maximum as a double precision floating point number for the active attribute."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: MaxString
+	"Camera Attributes:Maximum:String"
+	string	readonly	29	28
+	"Read only. Gets the current maximum as a string for the active attribute.-"	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: Type
+	"Camera Attributes:Type"
+	uL	enum	{"U32"=0, "I64"=1, "DBL"=2, "String"=3, "Enum"=4, "Bool"=5, "Command"=6}	readonly	29	29
+	"Read only. Gets the active type for the active attribute."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: EnumValues[]
+	"Camera Attributes:Enum:Values[]"
+	uL1D	readonly	29	2D
+	"Read only. Returns an array of enum attribute values for the active attribute."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: EnumStrings[]
+	"Camera Attributes:Enum:Strings[]"
+	string1D	readonly	29	2E
+	"Read only. Returns an array of enum attribute strings for the active attribute."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: IsReadable
+	"Camera Attributes:Is Readable"
+	bool	readonly	29	2F
+	"Read only. Gets the read access for the active attribute. TRUE if readable; otherwise FALSE."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: IsWritable
+	"Camera Attributes:Is Writable"
+	bool	readonly	29	30
+	"Read only. Gets the write access for the active attribute. TRUE if writable; otherwise FALSE."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: IncU32
+	"Camera Attributes:Increment:U32"
+	uL	readonly	29	35
+	"Read only. Gets the increment as an integer for the active attribute."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: IncI64
+	"Camera Attributes:Increment:I64"
+	iQ	readonly	29	34
+	"Read only. Gets the increment as a 64-bit integer for the active attribute."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: IncDBL
+	"Camera Attributes:Increment:DBL"
+	fD	readonly	29	36
+	"Read only. Gets the increment as a double precision floating point number for the active attribute."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: IncString
+	"Camera Attributes:Increment:String"
+	string	readonly	29	37
+	"Read only. Gets the increment as a string for the active attribute."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: Tooltip
+	"Camera Attributes:Tooltip"
+	string	readonly	29	38
+	"Read only. Gets the tooltip for the active attribute."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: Units
+	"Camera Attributes:Units"
+	string	readonly	29	39
+	"Read only. Gets the units for the active attribute."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: Visibility
+	"Camera Attributes:Visibility"
+	uL	enum	{"Simple"=4096, "Intermediate"=8192, "Advanced"=16384}	readonly	29	4A
+	"Read only. Gets the visibility for the active attribute."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: Description
+	"Camera Attributes:Description"
+	string	readonly	29	4B
+	"Read only. Gets the description for the active attribute."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
+attribute: DisplayName
+	"Camera Attributes:Display Name"
+	string	readonly	29	4C
+	"Read only. Gets the display name for the active attribute."	HTML\IMAQDX_Properties.html	"..\..\help\NI-IMAQdx VI Reference.chm"
+
